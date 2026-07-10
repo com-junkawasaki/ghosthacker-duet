@@ -1,0 +1,28 @@
+;; GHOST HACKER: DUET — Ghost Hacker portfolio #8, sports genre / 1v1
+;; competitive Ghost Battle (ADR-2607023200). Depends on the shared
+;; groove-sync judgment core (ADR-2607032600) — see
+;; com-junkawasaki/ghosthacker-groove-core for the judgment/score/combo/
+;; groove/chart API this repo builds the player-vs-rival match framing
+;; on top of.
+{:paths ["src"]
+
+ :deps {org.clojure/clojure {:mvn/version "1.12.0"}
+        com-junkawasaki/ghosthacker-groove-core
+        {:git/url "https://github.com/com-junkawasaki/ghosthacker-groove-core.git"
+         :sha "67e9ef2b1bba0e0c64f5366f9813338374bebfae"}}
+
+ :aliases
+ {:test {:extra-paths ["test"]
+         :extra-deps {io.github.cognitect-labs/test-runner
+                      {:git/tag "v0.5.1" :git/sha "dfb30dd"}}
+         :main-opts ["-m" "cognitect.test-runner"]}
+  ;; clj-kondo as a Clojars lib (no Homebrew/system install needed).
+  :lint {:extra-deps {clj-kondo/clj-kondo {:mvn/version "2024.09.27"}}
+         :main-opts ["-m" "clj-kondo.main" "--lint" "src" "test"]}
+  ;; Browser host adapter (ADR-2607100900 follow-up (b)): same shape as
+  ;; ghosthacker-flow/ghosthacker-harmony's -- plain reagent, Web Audio
+  ;; for the beat clock + synthesized tick (no composed music layers
+  ;; exist yet).
+  :cljs {:extra-deps {org.clojure/clojurescript {:mvn/version "1.11.132"}
+                      reagent/reagent           {:mvn/version "1.2.0"}
+                      thheller/shadow-cljs      {:mvn/version "2.28.20"}}}}}

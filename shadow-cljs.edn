@@ -1,0 +1,9 @@
+;; shadow-cljs build for the DUET browser host adapter (ADR-2607100900
+;; follow-up (b)). Same layout as ghosthacker-flow/ghosthacker-harmony's
+;; browser build.
+{:deps   {:aliases [:cljs]}
+ :builds {:app {:target     :browser
+                :output-dir "public"
+                :asset-path "."
+                :modules    {:main {:init-fn ghosthacker-duet.web/init}}
+                :dev-http   {8301 "public"}}}}
