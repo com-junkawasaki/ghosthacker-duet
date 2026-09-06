@@ -15,13 +15,14 @@
 (def ^:private parse-rival-key #'terminal/parse-rival-key)
 
 (defn- silently [thunk]
-  (binding [*out* (java.io.StringWriter.)]
-    (thunk)))
+  ;; swallow stdout while still returning thunk's value; with-out-str is
+  ;; portable (JVM + ClojureScript), so no java.io.StringWriter import.
+  (let [ret (promise)]
+    (with-out-str (deliver ret (thunk)))
+    @ret))
 
 (defn- capture-out [thunk]
-  (let [w (java.io.StringWriter.)]
-    (binding [*out* w] (thunk))
-    (str w)))
+  (with-out-str (thunk)))
 
 (deftest read-beats-eof-boundary-test
   (testing "stdinがEOF(空)ならjudgmentゼロのまま即座に打ち切る(ハングしない)"
