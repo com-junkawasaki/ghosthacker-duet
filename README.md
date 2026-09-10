@@ -24,7 +24,7 @@ Ghost Hacker ゲームポートフォリオ第8弾（スポーツ）。設計は
 
 ## 実装範囲
 
-`src/ghosthacker_duet/match.cljc` — pure、host-free。
+`src/ghosthacker_duet/match.kotoba` — pure、host-free。
 `ghosthacker.groove.core`は複製せず、以下だけを追加する:
 
 - **match-outcome** — playerとrivalの`groove/summary`同士を`:score`で
@@ -38,7 +38,7 @@ Ghost Hacker ゲームポートフォリオ第8弾（スポーツ）。設計は
 - **play-match** — playerの入力列を`groove/chart-play-run`で評価し、
   渡された`rival-summary`と比較する統合API
 
-`src/ghosthacker_duet/rivals.cljc` — サンプルデータの**難易度プロファイル**
+`src/ghosthacker_duet/rivals.kotoba` — サンプルデータの**難易度プロファイル**
 （`:steady-rival`＝堅実型、good窓中心／`:ace-rival`＝エース、perfect窓中心）。
 このポートフォリオ共通ルール（新規オリジナルキャラクターは追加しない）に
 従い、名前や人格を持つキャラクターとしては実装せず、あくまで「他校/他事務所の
@@ -47,13 +47,13 @@ Ghost Hacker ゲームポートフォリオ第8弾（スポーツ）。設計は
 `groove/chart-play-run`をそのまま呼ぶことで走行結果を作る——rival専用の
 判定ロジックはゼロで、playerの判定と全く同じgroove-core APIを使う。
 
-**プレイ可能な最小プロトタイプ**として `src/ghosthacker_duet/terminal.clj`
+**プレイ可能な最小プロトタイプ**として `src/ghosthacker_duet/terminal.kotoba`
 がある（ghosthacker-harmonyのterminal.cljと同じ構成: 新規依存ゼロ、
 背景`future`が実時刻でtickを刻み、`read-line`で実際の経過時間を判定）。
 プレイ終了後、指定したrival（既定は`:steady-rival`）の走行結果と比較して
 WIN/LOSE/DRAWを表示する。
 
-**ブラウザで遊べるホストアダプタ**が `src/ghosthacker_duet/web.cljs`
+**ブラウザで遊べるホストアダプタ**が `src/ghosthacker_duet/web.kotoba`
 （reagent、ADR-2607100900 follow-up (b)、ghosthacker-flow/harmonyと同じ設計）:
 作曲済みの2レイヤー楽曲は存在しないため、Web Audioの
 `AudioContext.currentTime`でビートクロック+合成メトロノーム音
