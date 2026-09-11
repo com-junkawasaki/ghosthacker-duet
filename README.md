@@ -68,27 +68,27 @@ Web Audio非対応環境では`performance.now()`+無音に自動degrade。
 ## 開発
 
 ```bash
-clojure -M:test
+kbb -M:test
 ```
 
 Lint（clj-kondo、Clojars経由でHomebrew等の別インストール不要）:
 
 ```bash
-clojure -M:lint
+kbb -M:lint
 ```
 
 ターミナルで遊んでみる（第2引数でrivalを指定、既定は`steady-rival`）:
 
 ```bash
-clojure -M -m ghosthacker-duet.terminal 16 ace-rival
+kbb -M -m ghosthacker-duet.terminal 16 ace-rival
 ```
 
 ブラウザで遊んでみる（`npm install`は初回のみ、Spaceキーで入力）:
 
 ```bash
 npm install
-npx shadow-cljs watch app   # http://localhost:8301 で自動リロード開発
-npx shadow-cljs release app # public/ に静的バンドルをビルド(デプロイ可能)
+amu compile --target wasm32-browser app   # http://localhost:8301 で自動リロード開発
+amu compile --target wasm32-browser app # public/ に静的バンドルをビルド(デプロイ可能)
 ```
 
 変更履歴は [CHANGELOG.md](CHANGELOG.md)。
