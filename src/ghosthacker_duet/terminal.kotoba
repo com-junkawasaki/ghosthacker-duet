@@ -13,7 +13,7 @@
   portfolio #8) instead of FLOW's solo grade or HARMONY's ASYMMETRY/HARMONY
   latch.
 
-  Run: clojure -M -m ghosthacker-duet.terminal [beat-count] [rival-key]
+  Run: kbb -M -m ghosthacker-duet.terminal [beat-count] [rival-key]
   rival-key is :steady-rival (default) or :ace-rival."
   (:require [ghosthacker.groove.core :as groove]
             [ghosthacker-duet.rivals :as rivals]
@@ -75,7 +75,7 @@
   (if s (keyword s) :steady-rival))
 
 (defn -main
-  "Entry point for `clojure -M -m ghosthacker-duet.terminal [beat-count] [rival-key]`.
+  "Entry point for `kbb -M -m ghosthacker-duet.terminal [beat-count] [rival-key]`.
   See the ns docstring."
   [& args]
   (let [beat-count (if-let [a (first args)] (Integer/parseInt a) 12)
